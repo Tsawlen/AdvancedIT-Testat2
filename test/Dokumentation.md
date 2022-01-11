@@ -37,3 +37,64 @@ switch (components[0].toUpperCase()) {
 Die 3. Zeile dieses Codes zeigt, dass der erste Teil des Kommando-Strings komplett in Großbuchstaben umgewandelt wird, um dann mit dem Schlüsselwort verglichen zu werden und den richtigen Kommandotypen zurückzugeben.
   
 ## GET Kommando
+Dieses Kommando soll in Kombination mit einem Schlüssel dafür sorgen, dass der gespeicherte String zurückgegeben wird. Um dies zu testen werden erst beide zuvor gespeicherten Strings erfragt und danach ein nicht vorhandener.
+
+### Beispiel 3: "GET ec69a3ef-43d0-4b02-82fc-65b8622c1629"
+Dieses Kommando soll den gespeicherten Text aus Beispiel 1 zurückgeben. Folgendes ist die Antwort des Servers:
+```java
+Bitte geben sie ein Kommando ein: 
+GET ec69a3ef-43d0-4b02-82fc-65b8622c1629
+OK Dies ist ein Test
+```
+#### Auswertung des 3. Beispiels
+Dieses Beispiel zeigt, dass dieses Kommando zu funktionieren scheint. Der zurückgegebene Text "Dies ist ein Test" entspricht genau dem, was in Beispiel 1 ursprünglich übermittelt wurde.
+### Beispiel 4: "Get 65048b87-4dd3-4c40-96b1-c3da8d8d6712"
+Dieser Test soll zeigen, dass auch diese Kommando unabhängig von der Schreibweise erkannt wird. Folgendes ist die Antwort des Servers:
+```java
+Bitte geben sie ein Kommando ein: 
+Get 65048b87-4dd3-4c40-96b1-c3da8d8d6712
+OK erkennt es das Kommando auch, wenn es kleingeschrieben ist?
+```
+#### Auswertung des 4. Beispiels
+Dies beweist, dass auch dieses Kommando unabhängig von seiner Schreibweise funktioiert. Dies ist wie in Beispiel 2 darauf zurückzuführen, dass alle Buchstaben in Großbuchstaben umgewandelt werden.
+### Beispiel 5: "GET ec69a3ef-43d0-4b02-82fc-65b8622c1630"
+Dieses Beispiel soll zeigen, dass der Server damit umgehen kann, wenn ein Dokument angefordert wird, welches nicht auf dem Server existiert, ohne abzustürzen. Folgendes ist die Antwort des Servers:
+```java
+Bitte geben sie ein Kommando ein: 
+GET ec69a3ef-43d0-4b02-82fc-65b8622c1630
+FAILED
+```
+Der Server beschwert sich allerdings wie folgt:
+```java
+java.io.FileNotFoundException: C:\Users\Müller\Desktop\Messages\ec69a3ef-43d0-4b02-82fc-65b8622c1630.msg (The system cannot find the file specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:111)
+	at java.base/java.io.FileReader.<init>(FileReader.java:60)
+	at de.tsawlen.server.main.Server.getMessage(Server.java:182)
+	at de.tsawlen.server.main.Server.main(Server.java:70)
+```
+Dieser Fehler resultiert allerdings nicht darin, dass der Server abstürzt, was dadurch bewiesen werden kann, dass dieser auf weitere Kommandos reagiert:
+```java
+Bitte geben sie ein Kommando ein: 
+GET ec69a3ef-43d0-4b02-82fc-65b8622c1629
+OK Dies ist ein Test
+```
+#### Auswertung des 5. Beispiels:
+Dies beweist, dass der Server nicht abstüzt, wenn ein unbekannter String angefordert wird. Dies liegt daran, dass der lesende Abschnitt mit einem Try-Catch-Block geschützt ist.
+
+## Unbekanntes Kommando
+Auch soll getestet sein, dass der Server mit vollkommen unbekannten Kommandos umgehen kann ohne abzustürzen.
+### Beispiel 6: "Bring den Müll raus!"
+Dieses Kommando ist dem Server klar unbekannt. Seine Reaktion auf diese Aufforderung ist wie folgt:
+```java
+Bitte geben sie ein Kommando ein: 
+Bring den Müll raus!
+Status 404: Unknown Command
+```
+#### Auswertung des 6. Beispiels:
+Mit dieser Antwort ist bewiesen, dass der Server auch auf unbekannte Anfragen reagieren kann ohne abzustürzen. Zudem informiert der Server den Nutzer mit einem bekannten Fehlercode, nämlich "Status 404: Unkown Command".
+
+## Auswertung
+Mit all diesen Testfällen ist festzustellen, dass der Server funktioniert und seine Aufgabe gemäß den Anforderungen erfüllen kann!

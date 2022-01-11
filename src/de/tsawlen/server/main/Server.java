@@ -57,7 +57,7 @@ public class Server {
 						String id = saveMessage(message, path);
 						//when id is not null the message has been saved. If id is null it wasn't saved and the server sends an error
 						if(id != null) {
-							out.println("OK " + id);
+							out.println("KEY " + id);
 							out.flush();
 						}else {
 							out.println("Status 500: INTERNAL SERVER ERROR");

@@ -1,6 +1,7 @@
 package de.tsawlen.server.main;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -145,6 +146,18 @@ public class Server {
 		UUID msgID = UUID.randomUUID();
 		//build the path to save the file to
 		String filePath = path + "/" + msgID + ".msg";
+		//Pointer to the Folder
+		File folderPath = new File(path);
+		//Check if the folder exists
+		if(!folderPath.exists()) {
+			System.out.println("Messages Folder does not exist!");
+			System.out.println("Creating....");
+			//Create the folder, if the path does not exists
+			try {
+				folderPath.mkdir();
+			}
+			catch(Exception e) {}
+		}
 		//get the message without the command
 		String messageToSave = msg.substring(5);
 		try {

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Client {
 	
@@ -48,8 +49,17 @@ public class Client {
 				networkOut.flush();
 				System.out.println(networkIn.readLine());
 			}
+			catch (UnknownHostException uHE) {
+				System.out.println("Host not found!");
+				break;
+			}
 			catch(IOException e) {
-				e.printStackTrace();
+				System.out.println("Connection failed!");
+				break;
+			}
+			catch (Exception e) {
+				System.out.println("Something failed!");
+				break;
 			}
 			finally {
 				//close connection if one exists
@@ -58,7 +68,7 @@ public class Client {
 						client.close();
 					}
 					catch (IOException e) {
-						e.printStackTrace();
+						
 					}
 				}
 			}

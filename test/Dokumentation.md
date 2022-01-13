@@ -96,5 +96,38 @@ Status 404: Unknown Command
 #### Auswertung des 6. Beispiels:
 Mit dieser Antwort ist bewiesen, dass der Server auch auf unbekannte Anfragen reagieren kann ohne abzustürzen. Zudem informiert der Server den Nutzer mit einem bekannten Fehlercode, nämlich "Status 404: Unkown Command".
 
+### Beispiel 7: " "
+Dieses Beispiel soll zeigen, was passiert, wenn man dem Server über den Client einen leeren String schickt. Der Server antwortet folgendes:
+```java
+Bitte geben sie ein Kommando ein: 
+
+Status 404: Unknown Command
+```
+#### Auswertung des 7. Beispiels:
+Hiermit ist klar, dass der Server kein Problem damit hat, leere Werte geschickt zu bekommen und hierdurch nicht abstürzt. 
+
+### Beispiel 8: "SAVE dies ist ein Test ohne Messages Ordner" 
+In diesem Beispiel soll das Verhalten des Servers gezeigt werden, wenn kein Messages Ordner auf dem Desktop existiert. Der Server antwortet folgendes:
+```java
+Bitte geben sie ein Kommando ein: 
+SAVE dies ist ein Test ohne Messages Ordner
+KEY ae77762b-74cc-489e-a4da-085c32688411
+```
+Da dies erstmal als Fehler zu interpretieren könnte, muss klar gestellt sein, dass dies keiner ist. Der Server gibt in diesem Fehlerfall folgende Ausgabe:
+```java
+Messages Folder does not exist!
+Creating....
+```
+#### Auswertung des 8. Beispiels:
+Dieses Beispiel zeigt also erst einen vermeindlichen Fehler. Allerdings ist dies kein Fehler, da der Server automatisch erkennt, dass der Ordner zum Speichern nicht existiert und dieses deshalb erstellt und dann dort die Nachricht hinspeichert.
+
+### Beispiel 9: "Client start mit abgeschalteten Server"
+In diesem Beispiel soll getestet werden, was passiert, wenn der Client gestartet wird, ohne das der Server läuft. Der Client gibt folgendes aus:
+```java
+Connection failed!
+```
+#### Auswertung des 9. Beispiels
+Der Client stürzt nicht ab, sondern beendet sich selber, was dafür spricht, dass auch hier kein Problem vorliegt
+
 ## Auswertung
 Mit all diesen Testfällen ist festzustellen, dass der Server funktioniert und seine Aufgabe gemäß den Anforderungen erfüllen kann!

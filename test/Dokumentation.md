@@ -106,6 +106,8 @@ Status 404: Unknown Command
 #### Auswertung des 7. Beispiels:
 Hiermit ist klar, dass der Server kein Problem damit hat, leere Werte geschickt zu bekommen und hierdurch nicht abstürzt. 
 
+## MISC 
+
 ### Beispiel 8: "SAVE dies ist ein Test ohne Messages Ordner" 
 In diesem Beispiel soll das Verhalten des Servers gezeigt werden, wenn kein Messages Ordner auf dem Desktop existiert. Der Server antwortet folgendes:
 ```java

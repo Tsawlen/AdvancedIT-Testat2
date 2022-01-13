@@ -121,7 +121,7 @@ Messages Folder does not exist!
 Creating....
 ```
 #### Auswertung des 8. Beispiels:
-Dieses Beispiel zeigt also erst einen vermeindlichen Fehler. Allerdings ist dies kein Fehler, da der Server automatisch erkennt, dass der Ordner zum Speichern nicht existiert und dieses deshalb erstellt und dann dort die Nachricht hinspeichert.
+Dieses Beispiel zeigt also erst einen vermeindlichen Fehler. Allerdings ist dies kein Fehler, da der Server automatisch erkennt, dass der Ordner zum Speichern nicht existiert und diesen deshalb erstellt und dann dort die Nachricht hinspeichert.
 
 ### Beispiel 9: "Client start mit abgeschalteten Server"
 In diesem Beispiel soll getestet werden, was passiert, wenn der Client gestartet wird, ohne das der Server läuft. Der Client gibt folgendes aus:
